@@ -15,5 +15,5 @@ Architecture: any
 Depends:
  ${shlibs:Depends},
  ${misc:Depends},
-Description: <insert up to 60 chars description>
- <Insert long description, indented with spaces.>
+Description: libgourou is a free implementation of Adobe's ADEPT protocol used to add DRM on ePub/PDF files.
+

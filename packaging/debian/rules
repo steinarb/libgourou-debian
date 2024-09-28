@@ -1,5 +1,13 @@
 #!/usr/bin/make -f
 
+DISTRIBUTION = $(shell lsb_release -sr)
+VERSION = 0.8.6
+PACKAGEVERSION = $(VERSION)-1~$(DISTRIBUTION)0
+TARBALL = v$(VERSION).tar.gz
+URL = https://forge.soutade.fr/soutade/libgourou/archive/$(TARBALL)
+ORIG_SOURCE=libgourou_$(VERSION).orig.tar.gz
+SRC=unpacked-src
+
 # See debhelper(7) (uncomment to enable).
 # Output every command that modifies files on the build system.
 #export DH_VERBOSE = 1
@@ -18,6 +26,15 @@
 %:
 	dh $@
 
+override_dh_auto_clean:
+	rm -rf $(SRC) $(DESTDIR)
+	(cd ..; wget -N --progress=dot:mega $(URL); mv $(TARBALL) $(ORIG_SOURCE))
+override_dh_auto_test:
+override_dh_auto_build:
+	mkdir -p $(SRC)
+	(cd $(SRC); tar --strip-components=1 -xf ../../$(ORIG_SOURCE) )
+	sed -i -e 's#git://soutade.fr/updfparser.git lib/updfparser#https://forge.soutade.fr/soutade/uPDFParser.git lib/updfparser#' $(SRC)/scripts/setup.sh
+	(cd $(SRC); make )
 
 # dh_make generated override targets.
 # This is an example for Cmake (see <https://bugs.debian.org/641051>).

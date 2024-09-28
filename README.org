@@ -20,10 +20,10 @@ This debian package is created using standard debian packaging tools, and this d
     #+END_EXAMPLE
  2. Build the debian package
     #+BEGIN_EXAMPLE
-      cd libgourou-debian
+      cd libgourou-debian/packacing/
       dpkg-buildpackage
     #+END_EXAMPLE
- 3. There will be a libgourou-*.deb file in the directory above the libgourou-debian directory
+ 3. There will be a libgourou-*.deb file in the libgourou-debian directory
 
 ** To update the libgourou version
 
@@ -31,14 +31,14 @@ This debian package is created using standard debian packaging tools, and this d
     #+BEGIN_EXAMPLE
       git clone https://github.com/steinarb/libgourou-debian.git
     #+END_EXAMPLE
- 2. Edit the libgourou-debian/debian/rules file in a text editor and change the version number of the value:
+ 2. Edit the libgourou-debian/packaging/debian/rules file in a text editor and change the version number of the value:
     #+BEGIN_SRC makefile
-      VERSION = 4.2.8
+      VERSION = 0.8.6
     #+END_SRC
  3. Build the debian package
     #+BEGIN_EXAMPLE
-      cd libgourou-debian
+      cd libgourou-debian/packaging/
       dpkg-buildpackage
     #+END_EXAMPLE
- 4. There will be a libgourou-*.deb file in the directory above the libgourou-debian directory
+ 4. There will be a libgourou-*.deb file in the libgourou-debian directory
 

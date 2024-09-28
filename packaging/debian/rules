@@ -7,6 +7,8 @@ TARBALL = v$(VERSION).tar.gz
 URL = https://forge.soutade.fr/soutade/libgourou/archive/$(TARBALL)
 ORIG_SOURCE=libgourou_$(VERSION).orig.tar.gz
 SRC=unpacked-src
+DESTDIR=debian/libgourou
+ABSOLUTE_DESTDIR=`(mkdir -p ../$(DESTDIR); cd ../$(DESTDIR); pwd)`
 
 # See debhelper(7) (uncomment to enable).
 # Output every command that modifies files on the build system.
@@ -34,7 +36,9 @@ override_dh_auto_build:
 	mkdir -p $(SRC)
 	(cd $(SRC); tar --strip-components=1 -xf ../../$(ORIG_SOURCE) )
 	sed -i -e 's#git://soutade.fr/updfparser.git lib/updfparser#https://forge.soutade.fr/soutade/uPDFParser.git lib/updfparser#' $(SRC)/scripts/setup.sh
-	(cd $(SRC); make )
+	(cd $(SRC); make)
+override_dh_auto_install:
+	(cd $(SRC); DESTDIR=$(ABSOLUTE_DESTDIR) PREFIX= make install)
 
 # dh_make generated override targets.
 # This is an example for Cmake (see <https://bugs.debian.org/641051>).

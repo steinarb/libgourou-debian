@@ -1,6 +1,8 @@
 * Debian package for libgourou
 [[file:https://img.shields.io/badge/Debian-D70A53?style=for-the-badge&logo=debian&logoColor=white&ext=.svg]]
 
+[[https://forge.soutade.fr/soutade/libgourou][libgourou]] is a free implementation of Adobe's ADEPT protocol used to add DRM on ePub/PDF files. It overcomes the lack of Adobe support for Linux platforms.
+
 This git repository holds the scripts necessary to create a debian package of [[https://forge.soutade.fr/soutade/libgourou][libgourou]].
 
 This debian package is created using standard debian packaging tools, and this debian package is built from the libgourou source tar-ball.
